@@ -1,0 +1,82 @@
+.filter-container {
+    padding: 10px;
+    margin: 10px;
+}
+
+.filter-label {
+    font-weight: bold;
+    font-size: 10px;
+    padding: 4px 6px;
+}
+
+.filter-options {
+    color: rgba(67, 73, 73, 0.96);
+    font-size: 12px;
+    display: block;
+    word-wrap: break-word;
+}
+
+.filter-block {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.border-right {
+    border-right: solid 2px rgba(67, 73, 73, 0.96);
+}
+
+#filters {
+    padding: 5px;
+    border-bottom: solid 6px rgba(110, 91, 119, 0.40);
+    margin-bottom: 25px;
+}
+
+.data-table-header {
+    background-color: #434949;
+    color: #ffffff;
+}
+
+.btn-apply-filter {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.margin-bottom-15{
+    margin-bottom: 15px;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
+.big-checkbox {
+    width: 15px;
+    height: 15px;
+}
+
+.filter-top {
+    background-color: rgba(9, 13, 17, 0.04);
+}
+
+.display-filter-options {
+    color: rgba(27, 21, 20, 0.50);
+    font-size: 15px;
+}
+
+.quick-filter {
+    margin-bottom: 8px;
+}
+
+.quick-filter .filter-live {
+    margin: 4px;
+    display: block;
+}
+
+.quick-filter .filter-live-badge {
+    font-size: 10px;
+}
+
+.arrow-sidenav {
+    color: #ffffff;
+}

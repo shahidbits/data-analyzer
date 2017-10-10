@@ -1,0 +1,23 @@
+{
+  "name": "diagnal-know-debugger-front",
+  "version": "0.0.0",
+  "main": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.5.6",
+    "tether": "~1.2.4",
+    "socket.io": "~1.4.5",
+    "bootstrap": "~3.3.7",
+    "jquery": "~3.1.1",
+    "angular-bootstrap-multiselect": "https://github.com/bentorfs/angular-bootstrap-multiselect.git#^1.1.6",
+    "checklist-model": "^0.10.0",
+    "moment": "^2.17.1",
+    "angular-resource": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-sanitize": "^1.6.4"
+  }
+}

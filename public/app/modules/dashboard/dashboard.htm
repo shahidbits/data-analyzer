@@ -1,0 +1,522 @@
+<div class="filter-container" ng-controller="DashboardCtrl" xmlns="http://www.w3.org/1999/html">
+<div id="filters" class="collapse">
+
+<div class="row">
+
+<div class="col-md-2">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h5 class="panel-title"><strong><span class="glyphicon glyphicon-filter"></span> Select Filter</strong></h5>
+        </div>
+
+        <div class="">
+            <div class="list-group">
+                <a href="#" id="sidenav_device" class="list-group-item active"
+                   ng-click="sideNavClick('sidenav_device')">
+                    {{filterLabels.FILTER_TYPE_LABEL_DEVICE}}<span
+                        class="glyphicon glyphicon-play pull-right arrow-sidenav"></span>
+                </a>
+                <a href="#" id="sidenav_event" class="list-group-item"
+                   ng-click="sideNavClick('sidenav_event')">
+                    {{filterLabels.FILTER_TYPE_LABEL_EVENTTYPES}}<span
+                        class="glyphicon glyphicon-play pull-right arrow-sidenav"></span>
+                </a>
+                <a href="#" id="sidenav_attrs" class="list-group-item"
+                   ng-click="sideNavClick('sidenav_attrs')">
+                    {{filterLabels.FILTER_TYPE_LABEL_ATTRS}}<span
+                        class="glyphicon glyphicon-play pull-right arrow-sidenav"></span>
+                </a>
+                <a href="#" id="sidenav_globalattr" class="list-group-item"
+                   ng-click="sideNavClick('sidenav_globalattr')">
+                    {{filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS}}<span
+                        class="glyphicon glyphicon-play pull-right arrow-sidenav"></span>
+                </a>
+                <a href="#" id="sidenav_metrics" class="list-group-item"
+                   ng-click="sideNavClick('sidenav_metrics')">
+                    {{filterLabels.FILTER_TYPE_LABEL_METRICS}}<span
+                        class="glyphicon glyphicon-play pull-right arrow-sidenav"></span>
+                </a>
+                <a href="#" id="sidenav_text" class="list-group-item"
+                   ng-click="sideNavClick('sidenav_text')">
+                    {{filterLabels.FILTER_TYPE_LABEL_TEXT_FILTERS}}<span
+                        class="glyphicon glyphicon-play pull-right arrow-sidenav"></span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="col-md-10">
+
+<!-- SIDENAV - DEVICE -->
+<div class="row" id="sidenav_data_device">
+
+    <!--DEVICE-->
+    <div class="col-md-2" id="sidenav_device_data">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <ul class="nav nav-pills" role="tablist">
+                        {{filterLabels.FILTER_TYPE_LABEL_DEVICE}} <span class="badge">{{filterSelectedMultiple.device.length}}</span>
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="panel-body">
+                <div class="checkbox">
+
+                    <div class="row" ng-repeat="rows in filter.deviceChunked">
+                        <div class="col-md-12" ng-repeat="option in rows">
+                            <label class="filter-options">
+                                <input type="checkbox" checklist-model="filterSelectedMultiple.device"
+                                       ng-click="deviceTypeChanged(option)"
+                                       checklist-value="option"> {{option}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--GLOBALATTRS-->
+    <div class="col-md-10">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <ul class="nav nav-pills" role="tablist">
+                        {{filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS}} <span class="badge">{{filterSelectedMultiple.globalAttrs.length}}</span>
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="panel-body">
+                <div class="checkbox">
+
+                    <div class="row" ng-repeat="rows in filter.golbalAttrsChunkedFour">
+                        <div class="col-md-3" ng-repeat="option in rows">
+                            <label class="filter-options">
+                                <input type="checkbox" checklist-model="filterSelectedMultiple.globalAttrs"
+                                       checklist-value="option"> {{option}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.all(filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS)">All
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.none(filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS)">None
+                    </button>
+
+                    <!--<button class="btn btn-default btn-sm pull-right"-->
+                    <!--ng-click="filterSelectedProp.default(filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS)">-->
+                    <!--Default-->
+                    <!--</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SIDENAV - EVENTS -->
+<div class="row" id="sidenav_data_event">
+
+    <!-- EVENTS -->
+    <div class="col-md-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <ul class="nav nav-pills" role="tablist">
+                        {{filterLabels.FILTER_TYPE_LABEL_EVENTTYPES}} <span class="badge">{{filterSelectedMultiple.eventType.length}}</span>
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="panel-body">
+                <div class="checkbox">
+
+                    <div class="row" ng-repeat="rows in filter.eventTypeChunkedSix">
+                        <div class="col-md-2" ng-repeat="option in rows">
+                            <label class="filter-options">
+                                <input type="checkbox" checklist-model="filterSelectedMultiple.eventType"
+                                       ng-click="eventTypeChanged(option)"
+                                       checklist-value="option"> {{option}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.all(filterLabels.FILTER_TYPE_LABEL_EVENTTYPES)">All
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.none(filterLabels.FILTER_TYPE_LABEL_EVENTTYPES)">None
+                    </button>
+
+                    <button class="btn btn-default btn-sm pull-right"
+                            ng-click="filterSelectedProp.default(filterLabels.FILTER_TYPE_LABEL_EVENTTYPES)">
+                        Default
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ATTRIBUTES -->
+    <div class="col-md-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <ul class="nav nav-pills" role="tablist">
+                        {{filterLabels.FILTER_TYPE_LABEL_ATTRS}} <span class="badge">{{filterSelectedMultiple.attrs.length}}</span>
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="panel-body">
+                <div class="checkbox">
+
+                    <div class="row" ng-repeat="rows in filter.attrsChunkedSix">
+                        <div class="col-md-2" ng-repeat="option in rows">
+                            <label class="filter-options">
+                                <input type="checkbox" checklist-model="filterSelectedMultiple.attrs"
+                                       checklist-value="option"> {{option}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.all(filterLabels.FILTER_TYPE_LABEL_ATTRS)">All
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.none(filterLabels.FILTER_TYPE_LABEL_ATTRS)">None
+                    </button>
+
+                    <!--<button class="btn btn-default btn-sm pull-right"-->
+                    <!--ng-click="filterSelectedProp.default(filterLabels.FILTER_TYPE_LABEL_ATTRS)">Default-->
+                    <!--</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SIDENAV - ATTRIBUTES -->
+<div class="row" id="sidenav_data_attrs">
+    <div class="col-md-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <ul class="nav nav-pills" role="tablist">
+                        {{filterLabels.FILTER_TYPE_LABEL_ATTRS}} <span class="badge">{{filterSelectedMultiple.attrs.length}}</span>
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="panel-body">
+                <div class="checkbox">
+
+                    <div class="row" ng-repeat="rows in filter.attrsChunkedSix">
+                        <div class="col-md-2" ng-repeat="option in rows">
+                            <label class="filter-options">
+                                <input type="checkbox" checklist-model="filterSelectedMultiple.attrs"
+                                       checklist-value="option"> {{option}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.all(filterLabels.FILTER_TYPE_LABEL_ATTRS)">All
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.none(filterLabels.FILTER_TYPE_LABEL_ATTRS)">None
+                    </button>
+
+                    <!--<button class="btn btn-default btn-sm pull-right"-->
+                    <!--ng-click="filterSelectedProp.default(filterLabels.FILTER_TYPE_LABEL_ATTRS)">Default-->
+                    <!--</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SIDENAV - GLOBAL ATTRIBUTES -->
+<div class="row" id="sidenav_data_globalattr">
+    <div class="col-md-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <ul class="nav nav-pills" role="tablist">
+                        {{filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS}} <span class="badge">{{filterSelectedMultiple.globalAttrs.length}}</span>
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="panel-body">
+                <div class="checkbox">
+
+                    <div class="row" ng-repeat="rows in filter.golbalAttrsChunkedSix">
+                        <div class="col-md-2" ng-repeat="option in rows">
+                            <label class="filter-options">
+                                <input type="checkbox" checklist-model="filterSelectedMultiple.globalAttrs"
+                                       checklist-value="option"> {{option}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.all(filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS)">All
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.none(filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS)">None
+                    </button>
+
+                    <!--<button class="btn btn-default btn-sm pull-right"-->
+                    <!--ng-click="filterSelectedProp.default(filterLabels.FILTER_TYPE_LABEL_GLOBALATTRS)">-->
+                    <!--Default-->
+                    <!--</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SIDENAV - METRICS -->
+<div class="row" id="sidenav_data_metrics">
+    <div class="col-md-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <ul class="nav nav-pills" role="tablist">
+                        {{filterLabels.FILTER_TYPE_LABEL_METRICS}} <span class="badge">{{filterSelectedMultiple.metrics.length}}</span>
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="panel-body">
+                <div class="checkbox">
+
+                    <div class="row" ng-repeat="rows in filter.metricsChunked">
+                        <div class="col-md-2" ng-repeat="option in rows">
+                            <label class="filter-options">
+                                <input type="checkbox" checklist-model="filterSelectedMultiple.metrics"
+                                       checklist-value="option"> {{option}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.all(filterLabels.FILTER_TYPE_LABEL_METRICS)">All
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="filterSelectedProp.none(filterLabels.FILTER_TYPE_LABEL_METRICS)">None
+                    </button>
+
+                    <button class="btn btn-default btn-sm pull-right"
+                            ng-click="filterSelectedProp.default(filterLabels.FILTER_TYPE_LABEL_METRICS)">Default
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SIDENAV - TEXT FILTERS -->
+<div class="row" id="sidenav_data_text">
+    <div class="col-md-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h5 class="panel-title">Text Filters</h5>
+            </div>
+
+            <div class="panel-body">
+                <form>
+                    <div class="form-group col-md-4">
+                        <label>Client ID</label>
+                        <input type="text" class="form-control" placeholder="Client ID"
+                               ng-model="filterSelectedText.clientId">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>User ID</label>
+                        <input type="text" class="form-control" placeholder="User ID"
+                               ng-model="filterSelectedText.userId">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<div class="row btn-apply-filter">
+    <div class="col-md-2 col-md-offset-5 text-center">
+        <button class="btn btn-info" ng-click="applyFilter()" data-toggle="collapse" data-target="#filters">
+            APPLY FILTER <span class="glyphicon glyphicon-triangle-top"></span>
+        </button>
+    </div>
+</div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default filter-top">
+
+            <div class="panel-body">
+                <div class="col-md-10">
+                    <strong>DISPLAY FILTER</strong>&nbsp;&nbsp;&nbsp;
+                    <label ng-repeat="option in columnLabels" class="display-filter-options">
+                        <input class="" type="checkbox" checklist-model="filterDisplayFields" checklist-value="option">
+                        {{option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+
+                <div class="col-md-2">
+                    <ul class="nav nav-pills text-right" role="tablist">
+                        Data <span class="badge">{{filteredData.length}}</span>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <!--<div class="col-md-2">-->
+    <!--<div class="quick-filter panel panel-default">-->
+    <!--<div class="panel-body">-->
+    <!--<strong>Device Types</strong>&nbsp;&nbsp;&nbsp;<br>-->
+    <!--<button class="btn btn-default btn-sm filter-live" type="button" ng-repeat="option in filterSelectedMultiple.device">-->
+    <!--{{option}} <span class="badge filter-live-badge">X</span>-->
+    <!--</button>-->
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--<div class="quick-filter panel panel-default">-->
+    <!--<div class="panel-body">-->
+    <!--<strong>Event Types</strong>&nbsp;&nbsp;&nbsp;-->
+    <!--<button class="btn btn-default btn-sm filter-live" type="button" ng-repeat="option in filterSelectedMultiple.eventType">-->
+    <!--{{option}} <span class="badge filter-live-badge">X</span>-->
+    <!--</button>-->
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--</div>-->
+
+
+    <div class="col-md-12">
+
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+            <tr>
+                <th ng-repeat="column in columnLabels" ng-show="filterDisplayFields.indexOf(column) !== -1"
+                    class="data-table-header">{{column}}
+                </th>
+
+                <!--<th ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_ATTRIBUTES) !== -1"-->
+                <!--class="data-table-header">{{columnLabels.COLUMN_LABEL_ATTRIBUTES}}-->
+                <!--<span class="pull-right glyphicon glyphicon-filter" data-toggle="collapse" data-target="#attr_col_filter"></span>-->
+                <!--<div id="attr_col_filter" class="row collapse">-->
+                <!--<div class="col-md-12" ng-repeat="(key, value) in filterColumnValueFilter">-->
+                <!--<label>-->
+                <!--<input type="checkbox" checklist-model="filterColumnValue[columnLabels.COLUMN_LABEL_ATTRIBUTES]" checklist-value="value"-->
+                <!--ng-click="applyColumnValueDisplayFilter(columnLabels.COLUMN_LABEL_ATTRIBUTES, value)"> {{value}}-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</th>-->
+                <!--<th ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_GLOBALATTRIBUTES) !== -1"-->
+                <!--class="data-table-header">{{columnLabels.COLUMN_LABEL_GLOBALATTRIBUTES}}-->
+                <!--<span class="pull-right glyphicon glyphicon-filter" data-toggle="collapse" data-target="#globalAttr_col_filter"></span>-->
+                <!--<div id="globalAttr_col_filter" class="row collapse">-->
+                <!--<div class="col-md-12" ng-repeat="(key, value) in filterColumnValueFilter">-->
+                <!--<label>-->
+                <!--<input type="checkbox" checklist-model="filterColumnValue[columnLabels.COLUMN_LABEL_GLOBALATTRIBUTES]" checklist-value="value"-->
+                <!--ng-click="applyColumnValueDisplayFilter(columnLabels.COLUMN_LABEL_GLOBALATTRIBUTES, value)"> {{value}}-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr ng-repeat='data in filteredData = (logData | filterDevice:this | filterEventType:this | searchFilterClientId:this | searchFilterUserId:this)'-->
+            <!--class="data-event-new">-->
+            <tr ng-repeat='data in filteredData = (logData)'
+                class="data-event-new">
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_MODE) !== -1">
+                    {{data.mode}}
+                </td>
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_STATUS) !== -1">
+                    {{data.status}}
+                </td>
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_REQUEST) !== -1">
+                    <span ng-repeat="(key, value) in data.req">
+                        <span ng-show="value && value !== ''">
+                            <strong>{{key}}</strong> <span>{{value}}</span><br>
+                        </span>
+                        <span ng-show="value === false">
+                            <strong>{{key}}</strong> <span class="label label-danger">MISSING</span><br>
+                        </span>
+                    </span>
+                </td>
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_DATE) !== -1">
+                    {{data.date}}
+                </td>
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_IPADDR) !== -1">
+                    {{data.ip}}
+                </td>
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_RESPTIME) !== -1">
+                    {{data.restime}} ms
+                </td>
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_RESPMSG) !== -1">
+                    {{data.message}}
+                </td>
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_AUTH) !== -1">
+                    {{data.uid}}
+                </td>
+                <td ng-show="filterDisplayFields.indexOf(columnLabels.COLUMN_LABEL_USER) !== -1">
+                    <span ng-repeat="(key, value) in data.user">
+                        <span ng-show="value && value !== ''">
+                            <strong>{{key}}</strong> <span>{{value}}</span><br>
+                        </span>
+                        <span ng-show="value === false">
+                            <strong>{{key}}</strong> <span class="label label-danger">MISSING</span><br>
+                        </span>
+                    </span>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="row" ng-show="filteredData.length == 0">
+            <h1 class="text-center"> Oops... No Data</h1>
+            <h6 class="text-center">Have you triggered events to be received here?</h6>
+            <h6 class="text-center">Also, you can check filters at the top right of the page. May be, these are
+                resulting in No Data</h6>
+        </div>
+
+    </div>
+    <!--</div>-->
+
+</div>
