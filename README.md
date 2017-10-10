@@ -1,4 +1,4 @@
-# KNOW Debugger
+# Data Analyzer
 
 ## Install
 
